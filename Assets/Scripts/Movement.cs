@@ -8,12 +8,14 @@ public class Movement : MonoBehaviour {
     public float speed;
     private CardboardHead head;
     public GameObject character;
+    private Animator anim;
 
 	// Use this for initialization
 	void Start () {
         walk = false;
         walkDisabled = false;
         head = Camera.main.GetComponent<StereoController>().Head;
+        anim = GameObject.Find("alanwake_awns01").GetComponent<Animator>();
     }
 	
     void OnTriggerEnter(Collider col)
@@ -39,6 +41,7 @@ public class Movement : MonoBehaviour {
         if (GameObject.Find("CardboardMain").GetComponent<Cardboard>().Triggered && !walkDisabled)
         {
             walk = !walk;
+            anim.SetBool("isWalking", walk);
         }
         if (walk)
         {
@@ -46,7 +49,9 @@ public class Movement : MonoBehaviour {
             GetComponent<AudioSource>().UnPause();
             //character.GetComponent<Animator>().SetTrigger(isWalking, true);
         }
-        else
+        else {
             GetComponent<AudioSource>().Pause();
+            walk = false;
+        }
 	}
 }
