@@ -6,14 +6,14 @@ public class Movement : MonoBehaviour {
     public AudioSource riverCamp;
     public AudioSource mountainCamp;
     private bool walk;
-    private bool walkDisabled;
+    public bool walkDisabled;
     private float speed;
     private CardboardHead head;
     public GameObject character;
     private Animator anim;
     private Animator barryAnim;
     private int mode;
-    private Follow f;
+    private GameObject target;
 
     // Use this for initialization
     void Start () {
@@ -33,15 +33,18 @@ public class Movement : MonoBehaviour {
     void OnTriggerEnter(Collider col) {
         if (col.tag == "ToTheMountain") {
             transform.position = new Vector3(7423.346f, -5522.4f, -117.4304f);
-            //GameObject.Find("barrywheeler").transform.position = new Vector3(7407.52f, -5529.21f, -117.29f);
-            //f.follow = false;
+            Follow.follow = false;
+            GameObject.Find("Friend").transform.position = new Vector3(7425.1f, -5529.258f, -109.4f);
+            GameObject.Find("Friend").transform.eulerAngles = new Vector3(0, 186.1648f, 0);
             mode = 0;
             baseCamp.Stop();
             mountainCamp.Play();
         }
         if (col.tag == "ToTheLake") {
             transform.position = new Vector3(7371.993f, -5796.313f, 2682.001f);
-           // GameObject.Find("barrywheeler").transform.position = new Vector3();
+            Follow.follow = false;
+            GameObject.Find("Friend").transform.position = new Vector3(7349.912f, -5803.332f, 2683.377f);
+            GameObject.Find("Friend").transform.eulerAngles = new Vector3(0, 359.9114f, 0);
             mode = 0;
             baseCamp.Stop();
             riverCamp.Play();
@@ -53,8 +56,16 @@ public class Movement : MonoBehaviour {
 
     }
 
+    public void itemClicked(GameObject t) {
+        target = t;
+    }
+
     // Update is called once per frame
     void Update () {
+        if (target != null) {
+            // do logic for when item is clicked
+            Debug.Log(target.name);
+        }
         if (transform.rotation.x != 0 || transform.rotation.z != 0) {
             transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
         }
@@ -86,4 +97,7 @@ public class Movement : MonoBehaviour {
             anim.SetBool("isSprinting", true);
         }
 	}
+    void LateUpdate() {
+        target = null;
+    }
 }

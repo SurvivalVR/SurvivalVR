@@ -22,6 +22,7 @@ public class Follow : MonoBehaviour {
 	void Update () {
         if (follow) {
             transform.LookAt(target);
+            transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
             if (Vector3.Distance(barry.position, target.position) > 25) { // run if distance is greater than 10
                 speed = 13;
                 barryAnim.SetBool("isWalking", false);
@@ -38,6 +39,11 @@ public class Follow : MonoBehaviour {
                 barryAnim.SetBool("isSprinting", false);
             }
             barry.position += speed * barry.transform.forward * Time.deltaTime;
+        }
+        else {
+            speed = 0;
+            barryAnim.SetBool("isWalking", false);
+            barryAnim.SetBool("isSprinting", false);
         }
     }
 }
