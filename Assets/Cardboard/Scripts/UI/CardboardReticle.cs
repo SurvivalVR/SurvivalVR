@@ -84,6 +84,11 @@ public class CardboardReticle : MonoBehaviour, ICardboardPointer {
 
   }
 
+  private void toggleMesh(Transform t)
+    {
+        t.GetComponent<MeshRenderer>().enabled = !t.GetComponent<MeshRenderer>().enabled;
+    }
+
   /// Called when the user is looking on a valid GameObject. This can be a 3D
   /// or UI element.
   ///
@@ -91,7 +96,12 @@ public class CardboardReticle : MonoBehaviour, ICardboardPointer {
   /// the user is looking at, and the intersectionPosition is the intersection
   /// point of the ray sent from the camera on the object.
   public void OnGazeStart(Camera camera, GameObject targetObject, Vector3 intersectionPosition) {
-    SetGazeTarget(intersectionPosition);
+        if (targetObject.tag == "Interact")
+        {
+            SetGazeTarget(intersectionPosition);
+            toggleMesh(targetObject.transform.Find("TextPlane"));
+            toggleMesh(targetObject.transform.Find("TextPlane").Find("Text"));
+        }
   }
 
   /// Called every frame the user is still looking at a valid GameObject. This
@@ -101,7 +111,10 @@ public class CardboardReticle : MonoBehaviour, ICardboardPointer {
   /// looking at, and the intersectionPosition is the intersection point of the
   /// ray sent from the camera on the object.
   public void OnGazeStay(Camera camera, GameObject targetObject, Vector3 intersectionPosition) {
-    SetGazeTarget(intersectionPosition);
+        if (targetObject.tag == "Interact")
+        {
+            SetGazeTarget(intersectionPosition);
+        }
   }
 
   /// Called when the user's look no longer intersects an object previously
@@ -115,7 +128,12 @@ public class CardboardReticle : MonoBehaviour, ICardboardPointer {
     reticleDistanceInMeters = kReticleDistanceMax;
     reticleInnerAngle = kReticleMinInnerAngle;
     reticleOuterAngle = kReticleMinOuterAngle;
-  }
+        if (targetObject.tag == "Interact")
+        {
+            toggleMesh(targetObject.transform.Find("TextPlane"));
+            toggleMesh(targetObject.transform.Find("TextPlane").Find("Text"));
+        }
+    }
 
   /// Called when the Cardboard trigger is initiated. This is practically when
   /// the user begins pressing the trigger.
