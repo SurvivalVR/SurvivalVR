@@ -4,11 +4,12 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
     private bool walk;
-    private bool walkDisabled;
+    public bool walkDisabled;
     public float speed;
     private CardboardHead head;
     public GameObject character;
     private Animator anim;
+    private GameObject target;
 
     // Use this for initialization
     void Start () {
@@ -36,9 +37,18 @@ public class Movement : MonoBehaviour {
 
     }
 
+    public void itemClicked(GameObject t)
+    {
+        target = t;
+    }
 
     // Update is called once per frame
     void Update () {
+        if(target != null)
+        {
+            //do logic for when clicked on object here
+            Debug.Log(target.name);
+        }
         if (transform.rotation.x != 0 || transform.rotation.z != 0)
         {
             transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
@@ -62,4 +72,9 @@ public class Movement : MonoBehaviour {
             walk = false;
         }
 	}
+
+    void LateUpdate()
+    {
+        target = null;
+    }
 }
