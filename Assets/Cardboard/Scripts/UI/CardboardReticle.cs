@@ -99,7 +99,9 @@ public class CardboardReticle : MonoBehaviour, ICardboardPointer {
         if (targetObject.tag == "Interact")
         {
             SetGazeTarget(intersectionPosition);
-            toggleMesh(targetObject.transform.Find("TextPlane"));
+            targetObject.transform.Find("TextPlane").LookAt(transform);
+            targetObject.transform.Find("TextPlane").localEulerAngles = new Vector3(90, targetObject.transform.Find("TextPlane").localEulerAngles.y,0);
+            //toggleMesh(targetObject.transform.Find("TextPlane"));
             toggleMesh(targetObject.transform.Find("TextPlane").Find("Text"));
         }
   }
@@ -114,6 +116,9 @@ public class CardboardReticle : MonoBehaviour, ICardboardPointer {
         if (targetObject.tag == "Interact")
         {
             SetGazeTarget(intersectionPosition);
+            GameObject.Find("CardboardMain").GetComponent<Movement>().walkDisabled = true;
+            if (GameObject.Find("CardboardMain").GetComponent<Cardboard>().Triggered)
+                GameObject.Find("CardboardMain").GetComponent<Movement>().itemClicked(targetObject);
         }
   }
 
@@ -130,7 +135,8 @@ public class CardboardReticle : MonoBehaviour, ICardboardPointer {
     reticleOuterAngle = kReticleMinOuterAngle;
         if (targetObject.tag == "Interact")
         {
-            toggleMesh(targetObject.transform.Find("TextPlane"));
+            GameObject.Find("CardboardMain").GetComponent<Movement>().walkDisabled = false;
+            //toggleMesh(targetObject.transform.Find("TextPlane"));
             toggleMesh(targetObject.transform.Find("TextPlane").Find("Text"));
         }
     }
