@@ -20,10 +20,14 @@ public class Movement : MonoBehaviour {
 	
     void OnTriggerEnter(Collider col) {
         if (col.tag == "ToTheMountain") {
-            transform.position = new Vector3(300, 100, 0);
+            transform.position = new Vector3(7423.346f, -5522.4f, -117.4304f);
+            walk = false;
+            anim.SetBool("isWalking", walk);
         }
         if (col.tag == "ToTheLake") {
-            transform.position = new Vector3(300, 100, 0);
+            transform.position = new Vector3(7371.993f, -5796.313f, 2682.001f);
+            walk = false;
+            anim.SetBool("isWalking", walk);
         }
     }
 
