@@ -19,6 +19,12 @@ public class Movement : MonoBehaviour {
     }
 	
     void OnTriggerEnter(Collider col) {
+        if (col.tag == "ToTheMountain") {
+            transform.position = new Vector3(300, 100, 0);
+        }
+        if (col.tag == "ToTheLake") {
+            transform.position = new Vector3(300, 100, 0);
+        }
     }
 
     void OnTriggerExit(Collider col)
