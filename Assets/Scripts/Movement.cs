@@ -10,17 +10,15 @@ public class Movement : MonoBehaviour {
     public GameObject character;
     private Animator anim;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         walk = false;
         walkDisabled = false;
         head = Camera.main.GetComponent<StereoController>().Head;
         anim = GameObject.Find("alanwake_awns01").GetComponent<Animator>();
     }
 	
-    void OnTriggerEnter(Collider col)
-    {
-        
+    void OnTriggerEnter(Collider col) {
     }
 
     void OnTriggerExit(Collider col)
