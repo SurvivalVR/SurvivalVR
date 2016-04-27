@@ -7,8 +7,7 @@ public class Follow : MonoBehaviour {
     private Transform target;
     private Transform barry;
     public static bool follow;
-    void Awake()
-    {
+    void Awake() {
         barry = transform;
     }
     void Start () {

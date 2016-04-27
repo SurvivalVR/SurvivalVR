@@ -71,7 +71,11 @@ public class Movement : MonoBehaviour {
     public void itemClicked(GameObject t) {
         target = t;
         if (target.name == "InteractItem_Poison") {
-            Debug.Log("Snake friend selected");
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isSprinting", false);
+            anim.SetBool("isKneeling", true);
+            GameObject.Find("Main Camera").transform.localPosition = new Vector3(GameObject.Find("Main Camera").transform.localPosition.x,
+                -0.91f, GameObject.Find("Main Camera").transform.localPosition.z);
         }
         else if (target.name == "First+Aid+Kit") {
             barryAnim.SetBool("isBitten", false);
@@ -88,6 +92,7 @@ public class Movement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        character.transform.rotation = new Quaternion(0, GameObject.Find("Head").transform.rotation.y, 0, GameObject.Find("Head").transform.rotation.w);
         if (target != null) {
             // do logic for when item is clicked
             Debug.Log(target.name);
@@ -95,7 +100,6 @@ public class Movement : MonoBehaviour {
         if (transform.rotation.x != 0 || transform.rotation.z != 0) {
             transform.rotation = new Quaternion(0, transform.rotation.y, 0, transform.rotation.w);
         }
-        character.transform.rotation = new Quaternion(0, GameObject.Find("Head").transform.rotation.y, 0, GameObject.Find("Head").transform.rotation.w);
         if (GameObject.Find("CardboardMain").GetComponent<Cardboard>().Triggered && !walkDisabled) {
             if (mode == 2) {
                 mode = 0;
@@ -128,9 +132,6 @@ public class Movement : MonoBehaviour {
                 walkDisabled = true;
                 transform.LookAt(barry_snake);
                 transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isSprinting", false);
-                anim.SetBool("isKneeling", true);
             }
         }
 	}
