@@ -58,7 +58,7 @@ ul, li{
 	right: 20rem;
 	text-align: center;
 	padding:1rem 0rem;
-	border-radius: 0rem 5rem;
+	border-radius: 0.5rem 0.5rem;
 }
 .body{
 	position: absolute;
