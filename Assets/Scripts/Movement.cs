@@ -32,6 +32,7 @@ public class Movement : MonoBehaviour {
         anim.SetBool("isSprinting", false);
         barryAnim.SetBool("isWalking", false);
         barryAnim.SetBool("isSprinting", false);
+        GameObject.Find("Tourniquett").GetComponent<Renderer>().enabled = false;
         baseCamp.Play();
     }
     void Awake()
@@ -40,6 +41,7 @@ public class Movement : MonoBehaviour {
     }
     void OnTriggerEnter(Collider col) {
         if (col.tag == "ToTheMountain") {
+            barryAnim = GameObject.Find("barrywheeler_bear").GetComponent<Animator>();
             mountain = true;
             transform.position = new Vector3(7423.346f, -5522.4f, -117.4304f);
             Follow.follow = false;
@@ -54,8 +56,6 @@ public class Movement : MonoBehaviour {
             lake = true;
             transform.position = new Vector3(7371.993f, -5796.313f, 2682.001f);
             Follow.follow = false;
-            //GameObject.Find("Friend").transform.position = new Vector3(7349.912f, -5803.332f, 2683.377f);
-            //GameObject.Find("Friend").transform.eulerAngles = new Vector3(0, 359.9114f, 0);
             mode = 0;
             baseCamp.Stop();
             riverCamp.Play();
@@ -78,6 +78,11 @@ public class Movement : MonoBehaviour {
             barryAnim.SetBool("healed", true);
             GameObject.Find("jumbo+craft+stick+166033").transform.localPosition = new Vector3(2078.308f, 85.30997f, 1240.046f);
             GameObject.Find("jumbo+craft+stick+166033").transform.localEulerAngles = new Vector3(8.903728f, 40.63693f, 0f);
+        }
+        else if (target.name == "Tourniquet") {
+            barryAnim.SetBool("isBitten", false);
+            barryAnim.SetBool("healed", true);
+            GameObject.Find("Tourniquett").GetComponent<Renderer>().enabled = true;
         }
     }
 
