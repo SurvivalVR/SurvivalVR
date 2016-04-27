@@ -20,13 +20,13 @@ public class SnackAttack : MonoBehaviour {
         if (countdown) {
             delay -= Time.deltaTime;
         }
-        Debug.Log(delay);
         if (delay <= 0) {
             start = true;
+            anim.SetBool("isBitten", true);
             countdown = false;
         }
         if (start) {
-            anim.SetBool("isBitten", true);
+            delay = 10;
             trigger.SetActive(true);
         }
     }

@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour {
     public GameObject character;
     private Animator anim;
     private Animator barryAnim;
+    private Animator barryAnim_snake;
     private int mode;
     private GameObject target;
     private bool mountain;
@@ -49,6 +50,7 @@ public class Movement : MonoBehaviour {
             mountainCamp.Play();
         }
         if (col.tag == "ToTheLake") {
+            barryAnim = GameObject.Find("barrywheeler_snake").GetComponent<Animator>();
             lake = true;
             transform.position = new Vector3(7371.993f, -5796.313f, 2682.001f);
             Follow.follow = false;
@@ -68,6 +70,15 @@ public class Movement : MonoBehaviour {
 
     public void itemClicked(GameObject t) {
         target = t;
+        if (target.name == "InteractItem_Poison") {
+            Debug.Log("Snake friend selected");
+        }
+        else if (target.name == "First+Aid+Kit") {
+            barryAnim.SetBool("isBitten", false);
+            barryAnim.SetBool("healed", true);
+            GameObject.Find("jumbo+craft+stick+166033").transform.localPosition = new Vector3(2078.308f, 85.30997f, 1240.046f);
+            GameObject.Find("jumbo+craft+stick+166033").transform.localEulerAngles = new Vector3(8.903728f, 40.63693f, 0f);
+        }
     }
 
     // Update is called once per frame
@@ -109,6 +120,7 @@ public class Movement : MonoBehaviour {
         if (lake == true && SnackAttack.start) {
             if (Vector3.Distance(barry_snake.position, transform.position) < 8) {
                 mode = 0;
+                walkDisabled = true;
                 transform.LookAt(barry_snake);
                 transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
                 anim.SetBool("isWalking", false);
