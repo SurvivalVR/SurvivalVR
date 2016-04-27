@@ -1,0 +1,80 @@
+html{
+	font-family: "Kaushan Script";
+	background-color: #7aaedf;
+
+}
+h3, h4, h5{
+	margin:0px;
+}
+h3{
+	font-size: 3rem;
+}
+h4{
+	font-size: 2rem;
+}
+h5{
+	color: #6a92c3;
+	font-size: 1.5rem;
+}
+img{
+	height:8rem;
+}
+table{
+	text-align: center;
+	padding-left:20%;
+	padding-right:20%;
+	width:100%;
+}
+iframe{
+	border-color:transparent;
+}
+p{
+	margin-left: 2rem;
+	font-family: Lora;
+	font-size: 1rem;
+}
+ul, li{
+	font-family: Lora;
+	font-size: 1rem;
+}
+.header{
+	position: absolute;
+	background-image: url('img/GWOC-banner.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	left:0px;
+	right: 0px;
+	top:0px;
+	text-align: center;
+	padding-bottom: 25rem;
+}
+.video{
+	position: absolute;
+	background-color: rgba(255,255,255,0.6);
+	top:10rem;
+	left: 20rem;
+	right: 20rem;
+	text-align: center;
+	padding:1rem 0rem;
+	border-radius: 0rem 5rem;
+}
+.body{
+	position: absolute;
+	text-align: left;
+	margin-top: 34.5rem;
+	left:0px;
+	right: 0px;
+	top:0rem;
+	padding: 1rem 3rem;
+	background-color: #fffbf8;
+}
+.footer{
+	position: absolute;
+	padding-top: 1.5rem;
+	right:3rem;
+	left: 3rem;
+}
+.footer h5{
+	color: #4c698c;
+}
