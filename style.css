@@ -1,5 +1,5 @@
 html{
-	font-family: "Kaushan Script";
+	font-family: "Architects Daughter";
 	background-color: #7aaedf;
 
 }
@@ -13,7 +13,8 @@ h4{
 	font-size: 2rem;
 }
 h5{
-	color: #6a92c3;
+	text-decoration: overline;
+	color: #343315;
 	font-size: 1.5rem;
 }
 img{
@@ -39,7 +40,7 @@ ul, li{
 }
 .header{
 	position: absolute;
-	background-image: url('img/GWOC-banner.jpg');
+	background-image: url('img/survival-banner.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
