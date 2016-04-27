@@ -35,8 +35,7 @@ public class Movement : MonoBehaviour {
         GameObject.Find("Tourniquett").GetComponent<Renderer>().enabled = false;
         baseCamp.Play();
     }
-    void Awake()
-    {
+    void Awake() {
         barry_snake = GameObject.Find("barrywheeler_snake").transform;
     }
     void OnTriggerEnter(Collider col) {
@@ -45,11 +44,10 @@ public class Movement : MonoBehaviour {
             mountain = true;
             transform.position = new Vector3(7423.346f, -5522.4f, -117.4304f);
             Follow.follow = false;
-            GameObject.Find("Friend").transform.position = new Vector3(7425.1f, -5529.258f, -109.4f);
-            GameObject.Find("Friend").transform.eulerAngles = new Vector3(0, 186.1648f, 0);
             mode = 0;
             baseCamp.Stop();
             mountainCamp.Play();
+            BearAttack.countdown = true;
         }
         if (col.tag == "ToTheLake") {
             barryAnim = GameObject.Find("barrywheeler_snake").GetComponent<Animator>();
@@ -62,12 +60,6 @@ public class Movement : MonoBehaviour {
             SnackAttack.countdown = true;
         }
     }
-
-    void OnTriggerExit(Collider col)
-    {
-
-    }
-
     public void itemClicked(GameObject t) {
         target = t;
         if (target.name == "InteractItem_Poison") {
