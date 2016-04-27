@@ -63,19 +63,24 @@ public class Movement : MonoBehaviour {
     public void itemClicked(GameObject t) {
         target = t;
         if (target.name == "InteractItem_Poison") {
+            GameObject.Find("Info Text").GetComponent<TextMesh>().text = "Trying to suck the venom out of a wound is \ngenerally not a good idea. It can damage \nthe area around or contaminate the wound \nmore and is not an effective means to \nhelp the victim.";
             anim.SetBool("isWalking", false);
             anim.SetBool("isSprinting", false);
             anim.SetBool("isKneeling", true);
             GameObject.Find("Main Camera").transform.localPosition = new Vector3(GameObject.Find("Main Camera").transform.localPosition.x,
                 -0.91f, GameObject.Find("Main Camera").transform.localPosition.z);
         }
-        else if (target.name == "First+Aid+Kit") {
+        else if (target.name == "First+Aid+Kit")
+        {
+            GameObject.Find("Info Text").GetComponent<TextMesh>().text = "Using a splint to restrict movement is \nthe best way to go. You want to wrap \nthe area in a compression bandage as \nfirmly as you would a sprained ankle. \nDo not cover the bite area.";
             barryAnim.SetBool("isBitten", false);
             barryAnim.SetBool("healed", true);
             GameObject.Find("jumbo+craft+stick+166033").transform.localPosition = new Vector3(2078.308f, 85.30997f, 1240.046f);
             GameObject.Find("jumbo+craft+stick+166033").transform.localEulerAngles = new Vector3(8.903728f, 40.63693f, 0f);
         }
-        else if (target.name == "Tourniquet") {
+        else if (target.name == "Tourniquet")
+        {
+            GameObject.Find("Info Text").GetComponent<TextMesh>().text = "Using a tourniquet is typically not a good \nidea in most cases. After being applied for even 2 hours, permanent tissue \ndamage can occur. They are also not effective \nin stopping the spread of venom \nas it is already in the bloodstream.";
             barryAnim.SetBool("isBitten", false);
             barryAnim.SetBool("healed", true);
             GameObject.Find("Tourniquett").GetComponent<Renderer>().enabled = true;
