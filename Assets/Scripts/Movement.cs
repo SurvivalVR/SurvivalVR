@@ -5,6 +5,7 @@ public class Movement : MonoBehaviour {
     public AudioSource baseCamp;
     public AudioSource riverCamp;
     public AudioSource mountainCamp;
+    public AudioSource pans;
     private bool walk;
     public bool walkDisabled;
     private float speed;
@@ -91,7 +92,8 @@ public class Movement : MonoBehaviour {
             mode = 2;
         }
         else if (target.name == "Pan+Spoon") {
-            anim.SetTrigger("yell");
+            pans.Play();
+            BearAttack.scareBear = true;
         }
     }
 
