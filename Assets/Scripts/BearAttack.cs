@@ -19,7 +19,6 @@ public class BearAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(delay);
         if (countdown) {
             delay -= Time.deltaTime;
         }
