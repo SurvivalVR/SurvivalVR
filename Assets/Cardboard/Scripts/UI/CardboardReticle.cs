@@ -96,7 +96,7 @@ public class CardboardReticle : MonoBehaviour, ICardboardPointer {
   /// the user is looking at, and the intersectionPosition is the intersection
   /// point of the ray sent from the camera on the object.
   public void OnGazeStart(Camera camera, GameObject targetObject, Vector3 intersectionPosition) {
-        if (targetObject.tag == "Interact")
+        if (targetObject.tag == "Interact" && (BearAttack.start || SnackAttack.start) && !BearAttack.scareBear)
         {
             SetGazeTarget(intersectionPosition);
             targetObject.transform.Find("TextPlane").LookAt(transform);
@@ -113,7 +113,7 @@ public class CardboardReticle : MonoBehaviour, ICardboardPointer {
   /// looking at, and the intersectionPosition is the intersection point of the
   /// ray sent from the camera on the object.
   public void OnGazeStay(Camera camera, GameObject targetObject, Vector3 intersectionPosition) {
-        if (targetObject.tag == "Interact")
+        if (targetObject.tag == "Interact" && (BearAttack.start || SnackAttack.start) && !BearAttack.scareBear)
         {
             SetGazeTarget(intersectionPosition);
             GameObject.Find("CardboardMain").GetComponent<Movement>().walkDisabled = true;
@@ -133,7 +133,7 @@ public class CardboardReticle : MonoBehaviour, ICardboardPointer {
     reticleDistanceInMeters = kReticleDistanceMax;
     reticleInnerAngle = kReticleMinInnerAngle;
     reticleOuterAngle = kReticleMinOuterAngle;
-        if (targetObject.tag == "Interact")
+        if (targetObject.tag == "Interact" && (BearAttack.start || SnackAttack.start) && !BearAttack.scareBear)
         {
             GameObject.Find("CardboardMain").GetComponent<Movement>().walkDisabled = false;
             //toggleMesh(targetObject.transform.Find("TextPlane"));

@@ -9,6 +9,7 @@ public class BearAttack : MonoBehaviour {
     private Animator anim;
     public float speed;
     public static bool scareBear;
+    public AudioSource barry_running;
 
     // Use this for initialization
     void Start () {
@@ -31,6 +32,9 @@ public class BearAttack : MonoBehaviour {
             bs.SetParent(null);
             bs.LookAt(GameObject.Find("Sphere").transform);
             bs.position += 15 * bs.forward * Time.deltaTime;
+            if (GameObject.Find("Bear Friend")) {
+                GameObject.Find("Bear Friend").GetComponent<Animation>().enabled = false;
+            }
         }
         if (countdown) {
             delay -= Time.deltaTime;
@@ -44,6 +48,10 @@ public class BearAttack : MonoBehaviour {
             if (!scareBear && !GetComponent<AudioSource>().isPlaying)
             {
                 GetComponent<AudioSource>().Play();
+            }
+            if(!scareBear && !barry_running.isPlaying)
+            {
+                barry_running.Play();
             }
             run.Play("Bear running");
             delay = 10;
